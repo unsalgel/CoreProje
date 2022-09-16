@@ -1,0 +1,57 @@
+﻿<link rel="stylesheet" href="~/skydash/vendors/mdi/css/materialdesignicons.min.css">
+
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" href="/Writer/Dashboard/Index">
+                <i class="icon-grid menu-icon"></i>
+                <span class="menu-title">Dashboard</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Writer/Message/ReceiverMessage/">
+                <i class="ti-comments menu-icon"></i>
+                <span class="menu-title">Gelen Mesajlar</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Writer/Message/SenderMessage/">
+                <i class="mdi mdi-message-reply-text menu-icon"></i>
+                <span class="menu-title">Giden Mesajlar</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Writer/Message/SendMessage">
+                <i class="ti-cloud menu-icon"></i>
+                <span class="menu-title">Yeni Mesaj</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Writer/Default/Index">
+                <i class="ti-announcement menu-icon"></i>
+                <span class="menu-title">Duyurular</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Writer/Profile/Index/">
+                <i class="mdi mdi-account menu-icon"></i>
+                <span class="menu-title">Profil</span>
+            </a>
+        </li>
+        @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+        {
+            <li class="nav-item">
+                <a class="nav-link" href="/Dashboard/Index/">
+                    <i class="ti-lock menu-icon"></i>
+                    <span class="text-danger menu-title">Admin Paneli Giriş</span>
+                </a>
+            </li>
+        }
+        <li class="nav-item">
+            <a class="nav-link" href="/Writer/Login/LogOut/">
+                <i class="mdi mdi-logout menu-icon"></i>
+                <span class="menu-title">Çıkış Yap</span>
+            </a>
+        </li>
+    </ul>
+</nav>

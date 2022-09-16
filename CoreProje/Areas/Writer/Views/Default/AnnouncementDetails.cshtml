@@ -1,0 +1,17 @@
+﻿@model EntityLayer.Concrete.Announcement
+@{
+    ViewData["Title"] = "AnnouncementDetails";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<h1>AnnouncementDetails</h1>
+<br />
+<div class="container-fluid">
+<input type="Hidden" class="form-control" name="ID" value="@Model.ID" />
+<label>Başlık</label>
+<input type="text" class="form-control" name="Title" value="@Model.Title" />
+<label>İçerik</label>
+@Html.TextAreaFor(p=>p.Content,5,5,new {@class="form-control"})
+<input type="text" hidden name="Date" value="@DateTime.Now.ToShortDateString()" />
+ 
+</div>

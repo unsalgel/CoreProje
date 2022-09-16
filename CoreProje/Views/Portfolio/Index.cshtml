@@ -1,0 +1,74 @@
+﻿@using EntityLayer.Concrete
+@model List<Portfolio>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+ 
+}
+ 
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped ">
+                <tr>
+                    <th scope="col" class="sort">#</th>
+                    <th scope="col" class="sort">Proje Başlık</th>
+                    <th scope="col" class="sort">Proje Alt Başlık</th>
+                    <th scope="col" class="sort">Proje Durumu</th>
+                    <th scope="col" class="sort">Sil</th>
+                    <th scope="col" class="sort">Güncelle</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                
+                    <tr class="list">
+                        <th>@item.PortfolioID</th>
+                        <th>@item.Name</th>
+                        <td>@item.Title</td>
+                        <td>
+                            <a href="/Portfolio/PortfolioStatusTrue/@item.PortfolioID" class="btn btn-success">Proje Devam Ediyor</a>
+                            <a href="/Portfolio/PortfolioStatusFalse/@item.PortfolioID" class="btn btn-primary">Proje Tamamlandı</a>
+                        </td>
+                        <td><a href="/Portfolio/DeletePortfolio/@item.PortfolioID" class="btn btn-danger">Sil</a></td>
+                        <td><a href="/Portfolio/EditPortfolio/@item.PortfolioID" class="btn btn-warning">Düzenle</a></td>
+                    </tr>
+                }
+            </table>
+            <br />
+            <br />
+            <button data-toggle="modal" data-target="#modal1" class="btn btn-primary">Yeni Portfolyo Ekle</button>
+            <br />
+        </div>
+
+        <div class="modal" id="modal1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title">Yeni Porfolyo Ekleme Paneli</h2>
+                    </div>
+                    <form method="post" action="/Portfolio/AddPortfolio">
+                        <div class="modal-body">
+                            <label>Proje Adı</label>
+                            <input type="text" required minlength="5" maxlength="150" name="Name" class="form-control" />
+                            <label>Proje Başlığı</label>
+                            <input type="text" required minlength="5" maxlength="80" name="Title" class="form-control" />
+                            <label>Küçük Resim</label>
+                            <input type="text" required minlength="5" name="SmallImageURL" class="form-control" />
+                            <label>Büyük Resim</label>
+                            <input type="text" required minlength="5" name="BigImageURL" class="form-control" />
+                             <label>Proje Durumu</label>
+                             <select name="Status" class="form-control">
+                                 <option value="True">Proje Devam Ediyor</option>
+                                 <option value="False">Proje Bitti</option>
+                             </select>
+                            <br /> 
+                            <button class="btn btn-primary">Portfolyo Ekle</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

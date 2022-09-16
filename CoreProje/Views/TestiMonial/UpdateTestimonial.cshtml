@@ -1,0 +1,27 @@
+﻿@using EntityLayer.Concrete
+@model EntityLayer.Concrete.Testimonial
+@{
+    ViewData["Title"] = "UpdateTestimonial";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<div class="card">
+    <div class="card-body">
+
+        <h1>Referans Düzenleme</h1>
+        @using (Html.BeginForm("UpdateTestimonial", "TestiMonial", FormMethod.Post))
+        {
+            @Html.HiddenFor(p=>p.TestimonialID)
+            <label>Referans İsmi</label>
+            @Html.TextBoxFor(p=>p.ClientName,new{@class="form-control"})
+            <label>Yaptığı iş</label>
+            @Html.TextBoxFor(p=>p.Company,new{@class="form-control"})
+            <label>Resim</label>
+            @Html.TextBoxFor(p=>p.ImageURL,new{@class="form-control"})
+            <label>Referans Yorumu</label>       
+            @Html.TextAreaFor(p=>p.Comment,8,5,new{@class="form-control"})
+            <button class="btn btn-primary">Güncelle</button>
+        }
+    </div>
+</div>
+ 
+

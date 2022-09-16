@@ -1,0 +1,39 @@
+﻿@using EntityLayer.Concrete
+@model List<Announcement>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Başlık</th>
+                            <th>Tarih</th>
+                            <th>Duyuru</th>
+                            <th>Detaylar</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.ID</td>
+                                <td>@item.Title</td>
+                                <td>@Convert.ToDateTime(item.Date).ToString("dd-MMMM-yyyy")</td>
+                                <td>@item.Content</td>
+                                <td><a href="/Writer/Default/AnnouncementDetails/@item.ID" class="btn btn-outline-primary">Detaylar</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

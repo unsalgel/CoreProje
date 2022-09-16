@@ -1,0 +1,49 @@
+﻿@using EntityLayer.Concrete
+@model List<SocialMedia>
+@{
+    string durum = "";
+    string buton = "";
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<link href="~/Template/css/font-awesome/css/all.min.css?ver=1.2.0" rel="stylesheet">
+<div class="card">
+    <div class="card-body">
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th>LOGO</th>
+                    <th>Sosyal medya ismi</th>
+                    <th>URL</th>
+                    <th>Durum</th>
+                    <th>Düzenle</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    if (item.Status==true)
+                    {
+                        durum = "Aktif";
+                        buton = "p-2 mb-1 bg-info text-white";
+                    }
+                    else{
+                         durum = "Pasif";
+                        buton = "p-2 mb-1 bg-danger text-white";
+                    }
+                    <tr>
+                        <td align="center"><i class="@item.Icon"></i></td>
+                        <td>@item.Name</td>
+                        <td>@item.Url</td>
+                        <td><div class="@buton">@durum</div></td>
+                        <td><a href="/SocialMedia/EditSocialMedia/@item.SocialMediaID" class="btn btn-outline-success">Düzenle</a></td>
+                        <td><a href="/SocialMedia/SocialMediaTrue/@item.SocialMediaID" class="btn btn-success">Sosyal Medyayı Göster</a>
+                        <a href="/SocialMedia/SocialMediaFalse/@item.SocialMediaID" class="btn btn-primary">Sosyal Medyayı Gizle</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>

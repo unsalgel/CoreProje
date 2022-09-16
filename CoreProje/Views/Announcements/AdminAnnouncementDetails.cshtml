@@ -1,0 +1,20 @@
+﻿@using EntityLayer.Concrete
+@model EntityLayer.Concrete.Announcement
+@{
+    ViewData["Title"] = "AdminAnnouncementDetails";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>Duyuru Detayları</h1>
+
+
+<div class=card>
+    <div class="card-body">
+        @Html.HiddenFor(p=>p.ID)
+        <label>Duyuru Başlığı</label>
+        @Html.TextBoxFor(p=>p.Title,new{@class="form-control"})
+        <label>Duyuru Detay</label>
+        @Html.TextAreaFor(p=>p.Content,5,5,new{@class="form-control"})
+    </div>
+</div>
+

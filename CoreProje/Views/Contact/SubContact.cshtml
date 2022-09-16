@@ -1,0 +1,30 @@
+﻿@using EntityLayer.Concrete
+@model EntityLayer.Concrete.Contact
+@{
+    ViewData["Title"] = "SubContact";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <h1>İletişim Bilgileri Düzenleme</h1>
+
+        @using (Html.BeginForm("SubContact", "Contact", FormMethod.Post))
+        {
+
+            @Html.HiddenFor(p=>p.ContactID)
+            <label>Başlık</label>
+            @Html.TextBoxFor(p=>p.Title,new{@class="form-control",@required="required"})
+            <label>Açıklama</label>
+            @Html.TextAreaFor(p=>p.Description,5,5,new{@class="form-control",@required="required"})
+            <label>Mail</label>
+            @Html.TextBoxFor(p=>p.Mail,new{@class="form-control",@required="required"})
+            <label>Telefon</label>
+            @Html.TextBoxFor(p=>p.Phone,new{@class="form-control",@required="required"})
+            <br />
+            <button class="btn btn-outline-info">Düzenle</button>
+            <br />
+        }
+
+    </div>
+</div>

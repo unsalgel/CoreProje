@@ -1,0 +1,33 @@
+﻿@using EntityLayer.Concrete
+@model List<Portfolio>
+@{
+    string durum = "";
+ 
+}
+
+@foreach (var item in Model)
+{
+    if (item.Status==true)
+    {
+        durum="Proje Devam Ediyor";
+
+    }
+    else
+    {
+        durum="Proje Bitti";
+       
+    }
+
+    <div class="grid-item">
+        <a href="#">
+            <figure class="portfolio-item">
+                <img src="@item.SmallImageURL" data-bp="@item.BigImageURL" />
+                <figcaption>
+                    <h4 class="h5 mb-0">@item.Title</h4>
+                    <div>@item.Name</div>
+                    <div>@durum</div>
+                </figcaption>
+            </figure>
+        </a>
+    </div>
+}

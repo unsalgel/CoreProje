@@ -1,0 +1,142 @@
+﻿@using EntityLayer.Concrete
+@model EntityLayer.Concrete.Contact
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<!-- burdan devam etmen gerekiyor değerli mümin kardeşim-->
+<html lang="en-US">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+@await Component.InvokeAsync("HeaderList")
+<body id="top">
+    @await Component.InvokeAsync("NavbarList")
+    <div class="page-content">
+        <div id="content">
+              @await Component.InvokeAsync("FeatureList")
+            <div class="section pt-4 px-3 px-lg-4" id="about">
+                <div class="container-narrow">
+                    <div class="row">
+                     @await Component.InvokeAsync("AboutList")
+                    </div>
+                </div>
+            </div>
+            <div class="section px-3 px-lg-4 pt-5" id="services">
+                @await Component.InvokeAsync("ServiceList")
+            </div>
+            <div class="section px-3 px-lg-4 pt-5" id="skills">
+                @await Component.InvokeAsync("SkillList")
+            </div>
+            <div class="section px-2 px-lg-4 pt-5" id="portfolio">
+                <div class="container">
+                    <div class="text-center mb-5">
+                        <h2 class="marker marker-center">Portfolyo </h2>
+                    </div>
+                    <div class="grid bp-gallery pb-3" data-aos="zoom-in-up" data-aos-delay="100">
+                        <div class="grid-sizer"></div>
+                      @await Component.InvokeAsync("PortfolioList")
+                                                            
+                    </div>
+                </div>
+            </div>
+            <div class="section px-3 px-lg-4 pt-5" id="experience">
+                <div class="container-narrow">
+                    <div class="text-center mb-5">
+                        <h2 class="marker marker-center">Deneyimlerim</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                               @await Component.InvokeAsync("ExperienceList")
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section px-3 px-lg-4 pt-5" id="testimonials">
+                <div class="container-narrow">
+                    <div class="text-center mb-5">
+                        <h2 class="marker marker-center">Referanslarım</h2>
+                    </div>
+                    <div class="row">
+                       @await Component.InvokeAsync("TestimonialList")
+
+                    </div>
+                </div>
+            </div>
+            <div class="section px-2 px-lg-4 pb-4 pt-5 mb-5" id="contact">
+                <div class="container-narrow">
+                    <div class="text-center mb-5">
+                        <h2 class="marker marker-center">İletişim</h2>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-6" data-aos="zoom-in" data-aos-delay="100">
+                            <div class="bg-light my-2 p-3 pt-2">
+                                <div class="form-group my-2">
+                                    <label for="name" class="form-label fw-bolder">Adınız</label>
+                                    <input class="form-control" type="text" id="Name" name="Name" required>
+                                </div>
+                                <div class="form-group my-2">
+                                    <label for="email" class="form-label fw-bolder">Mail Adresiniz</label>
+                                    <input class="form-control" type="email" id="Mail" name="Mail" required>
+                                </div>
+                                <div class="form-group my-2">
+                                    <label for="message" class="form-label fw-bolder">Mesajınız</label>
+                                    <textarea class="form-control" style="resize: none;" id="Content" name="Content" rows="4" required></textarea>
+                                </div>
+                                <input type="text" hidden id="Date" value="@DateTime.Now.ToShortDateString()" name="Date">
+                                <button id="btncontactadd" class="btn btn-primary mt-2" type="button">Gönder</button>
+                            </div>
+                        </div>
+                        <script>
+                            $("#btncontactadd").click(function () {
+                                let values = {
+                                    Name: $("#Name").val(),
+                                    Mail: $("#Mail").val(),
+                                    Content: $("#Content").val(),
+                                    Date: $("#Date").val()
+                                };
+                                $.ajax({
+                                    type: "Post",
+                                    url: "/Default/Send/",
+                                    data: values,
+                                    success: function (fnk1) {
+                                        let result = jQuery.parseJSON(fnk1);
+                                        alert("Mesajınız Başarıyla Gönderildi !");
+                                    }
+                                });
+                            });
+                        </script>                      
+                        @*          @await Html.PartialAsync("/Views/Default/SendMessage.cshtml")*@
+@*                            @await Component.InvokeAsync("SendMessage")*@
+                            @await Component.InvokeAsync("ContactDetails")
+                    </div>
+                </div>
+            </div>    
+            <footer class="pt-4 pb-4 text-center bg-light">
+                <div class="container">
+                    <div class="my-3">
+                        <div class="h4">Ünsal GEL</div>
+                        <p>Web Developer & Mobile Application Developer</p>
+                        @await Component.InvokeAsync("SocialMediaList")
+                    </div>
+                    <div class="text-small text-secondary">
+                        <div class="mb-1">Copyright  2017  ©  Ünsal Gel</div>
+                        <div>
+                            <!-- Make sure to buy a license for the template before removing the line below. Buy license on https://templateflip.com/ -->Design - <a href="https://templateflip.com/" target="_blank">TemplateFlip</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <div id="scrolltop"><a class="btn btn-secondary" href="#top"><span class="icon"><i class="fas fa-angle-up fa-x"></i></span></a></div>
+    <script src="~/Template/scripts/imagesloaded.pkgd.min.js?ver=1.2.0"></script>
+
+    <script src="~/Template/scripts/masonry.pkgd.min.js?ver=1.2.0"></script>
+    <script src="~/Template/scripts/BigPicture.min.js?ver=1.2.0"></script>
+    <script src="~/Template/scripts/purecounter.min.js?ver=1.2.0"></script>
+    <script src="~/Template/scripts/bootstrap.bundle.min.js?ver=1.2.0"></script>
+    <script src="~/Template/scripts/aos.min.js?ver=1.2.0"></script>
+    <script src="~/Template/scripts/main.js?ver=1.2.0"></script>
+</body>
+</html>

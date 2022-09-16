@@ -1,0 +1,22 @@
+﻿@using EntityLayer.Concrete
+@model EntityLayer.Concrete.SocialMedia
+@{
+    ViewData["Title"] = "EditSocialMedia";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>Sosyal Medya Düzenle</h1>
+
+<div class="card">
+    <div class="card-body">
+       @using (Html.BeginForm("EditSocialMedia","SocialMedia")){
+           @Html.HiddenFor(p=>p.SocialMediaID)
+           @Html.HiddenFor(p=>p.Icon)
+           @Html.HiddenFor(p=>p.Name)
+           <label>URL</label>
+           @Html.TextBoxFor(p=>p.Url,new  {@class="form-control"})
+           <br />
+           <button class="btn btn-outline-primary">Güncelle</button>
+       }
+    </div>
+</div>

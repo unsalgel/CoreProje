@@ -1,0 +1,29 @@
+﻿@using EntityLayer.Concrete
+@model EntityLayer.Concrete.Portfolio
+@{
+    ViewData["Title"] = "EditPortfolio";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<div class="card">
+    <div class="card-body">
+        <h1>Portfolyo Güncelleme</h1>
+        @using (Html.BeginForm("EditPortfolio", "Portfolio", FormMethod.Post))
+        {
+
+            @Html.HiddenFor(p=>p.PortfolioID)
+            <label>Proje Başlığı</label>
+            @Html.TextBoxFor(p=>p.Name,new{@class="form-control",@required="required"})
+            <label>Proje Alt Başlığı</label>
+            @Html.TextBoxFor(p=>p.Title,new{@class="form-control",@required="required"})
+            <label>Proje Küçük Resim</label>
+            @Html.TextBoxFor(p=>p.SmallImageURL,new{@class="form-control",@required="required"})
+            <label>Proje Büyük Resim</label>
+            @Html.TextBoxFor(p=>p.BigImageURL,new{@class="form-control",@required="required"})
+            <br />
+            <button class="btn btn-info">Güncelle</button>
+            <br />
+        }
+    </div>
+</div>

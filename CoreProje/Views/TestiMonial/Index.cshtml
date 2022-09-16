@@ -1,0 +1,99 @@
+﻿@using EntityLayer.Concrete
+@model List<Testimonial>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<div class="col-12 grid-margin">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Referanslarım Listesi</h4>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Referans İsmi</th>
+                            <th>Yaptığı iş</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+
+                            <tr>
+                                <td>
+                                    <img src="@item.ImageURL" alt="image" />
+                                    <span class="pl-2">@item.ClientName</span>
+                                </td>
+                                <td> @item.Company </td>
+                                <td>
+                                    <a class="badge badge-outline-danger" href="/TestiMonial/DeleteTestimonial/@item.TestimonialID/">SİL</a>
+                                    <a class="badge badge-outline-warning" href="/TestiMonial/UpdateTestimonial/@item.TestimonialID/">Düzenle</a>
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+
+                <button class="btn btn-outline-info" data-toggle="modal" data-target="#modal1">Yeni Referans Ekle</button>
+                <div class="modal" id="modal1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2 class="modal-title">Yeni Kategori Ekleme Paneli</h2>
+                            </div>
+                            
+                                <div class="modal-body">
+                                    <label>İsim & Soyisim</label>
+                                    <input type="text" required id="inptname" name="ClientName" class="form-control" />
+                                    <label>Yaptığı iş</label>
+                                    <input type="text" required id="inptcompany" name="Company" class="form-control" />
+                                    <label>Resim URL</label>
+                                <input type="text" required id="inptimage" name="ImageURL" class="form-control" />
+                                    <label>Yorum</label>
+                                    <textarea class="form-control" id="inptcomment" required name="Comment" rows="5"></textarea>
+                                    <br />
+                                    <button id="add" class="btn btn-outline-primary">Referans Ekle</button>
+                                </div>
+                          
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    //listeleme
+
+
+
+
+                    
+                    //EKLEME
+                    $("#add").click(function () {
+                        let values = {
+                            ClientName: $("#inptname").val(),
+                            Company: $("#inptcompany").val(),
+                            ImageURL: $("#inptimage").val(),
+                            Comment: $("#inptcomment").val()
+
+                        };
+                        $.ajax({
+                            type: "Post",
+                            url: "/Testimonial/AddTestimonial/",
+                            data: values,
+                            success: function (fnk1) {
+                                let result = jQuery.parseJSON(fnk1);
+                                alert(result.Name + " Başarılı bir şekilde eklendi");
+                            }
+                        });
+                    });
+
+                </script>
+
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+            </div>
+        </div>
+    </div>
+</div>

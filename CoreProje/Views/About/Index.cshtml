@@ -1,0 +1,39 @@
+﻿@using EntityLayer.Concrete
+@model EntityLayer.Concrete.About
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <h1>Hakkımda Sayfası Güncelleme</h1>
+
+        @using (Html.BeginForm("Index", "About", FormMethod.Post))
+        {
+
+            @Html.HiddenFor(p=>p.AboutID)
+            <label>Başlık Adı</label>
+            @Html.TextBoxFor(p=>p.Title,new{@class="form-control",@required="required"})
+            <label>Hakkımda</label>
+            @Html.TextAreaFor(p=>p.Description,5,5,new{@class="form-control",@required="required"})
+            <label>Yaş</label>
+            @Html.TextBoxFor(p=>p.Age,new{@class="form-control",@required="required"})
+            <label>Mail</label>
+            @Html.TextBoxFor(p=>p.Mail,new{@class="form-control",@required="required"})
+            <label>Telefon</label>
+            @Html.TextBoxFor(p=>p.Phone,new{@class="form-control",@required="required"})
+            <label>Adress</label>
+            @Html.TextBoxFor(p=>p.Address,new{@class="form-control",@required="required"})
+            <label>Resim</label>
+            @Html.TextBoxFor(p=>p.ImageURL,new{@class="form-control",@required="required"})
+
+
+            <br />
+            <button class="btn btn-info">Güncelle</button>
+            <br />
+        }
+
+    </div>
+</div>

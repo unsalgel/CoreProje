@@ -1,0 +1,66 @@
+﻿@using EntityLayer.Concrete
+@model List<Skill>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">
+    <table class="table table-striped ">
+        <tr>
+            <th scope="col" class="sort">#</th>
+            <th scope="col" class="sort">Başlık</th>
+            <th scope="col" class="sort">Oran</th>
+            <th scope="col" class="sort">Sil</th>
+            <th scope="col" class="sort">Güncelle</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>@item.SkillID</th>
+                <td>@item.Title</td>
+                <td>
+                <div class="d-flex align-items-center">
+                <span class="completion mr-2">@item.Value%</span>
+                <div>
+                <div class="progress">
+                <div class="progress-bar bg-green" role="progressbar" aria-valuenow="@item.Value" aria-valuemin="0" aria-valuemax="100" style="width: @item.Value%;"></div>
+                </div>
+                </div>
+                </div>
+                </td>
+                <td><a href="/Skill/DeleteSkill/@item.SkillID" class="btn btn-danger">Sil</a></td>
+                <td><a href="/Skill/EditSkill/@item.SkillID" class="btn btn-warning">Düzenle</a></td>
+            </tr>
+        }
+    </table>
+    <br />
+    <br />
+    <button  data-toggle="modal" data-target="#modal1" class="btn btn-primary">Yeni Yetenek Ekle</button>
+    <br />
+</div>
+
+<div class="modal" id="modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Yeni Yetenek Ekleme Paneli</h2>
+            </div>
+            <form method="post" action="/Skill/AddSkill">
+                <div class="modal-body">
+                    <label>Yetenek Adı</label>
+                    <input type="text" required name="Title" class="form-control" />
+                    <label>Yetenek Yüzdesi</label>
+                    <input type="text" required  name="Value" class="form-control" />                   
+                    <br />
+                    <button class="btn btn-primary">Yetenek Ekle</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>

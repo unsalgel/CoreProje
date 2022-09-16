@@ -1,0 +1,67 @@
+﻿@using EntityLayer.Concrete
+@model List<Experience>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<div class=card>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped ">
+                <tr>
+                    <th>#</th>
+                    <th>Yapılan İş</th>
+                    <th>Tarih</th>
+                    <th>Düzenle</th>
+                    <th>Sil</th>
+
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th>@item.ExperienceID</th>
+                        <td>@item.Name</td>
+                        <td>@Convert.ToDateTime(@item.Date).ToString("dd-MMMM-yyyy")</td>
+                        <td><a href="/Experience/DeleteExperience/@item.ExperienceID" class="btn   btn-rounded btn-fw btn-danger">Sil</a></td>
+                        <td><a href="/Experience/EditExperience/@item.ExperienceID" class="btn  btn-rounded btn-fw btn-warning">Düzenle</a></td>
+                    </tr>
+                }
+            </table>
+            <br />
+            <br />
+            <button data-toggle="modal" data-target="#modal1" class="btn btn-success btn-rounded btn-fw">Yeni Deneyim Ekle</button>
+            <br />
+        </div>
+
+        <div class="modal" id="modal1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title">Yeni Deneyim Ekleme Paneli</h2>
+                    </div>
+                    <form method="post" action="/Experience/AddExperience">
+                        <div class="modal-body">
+                            <label>Yapılan İş</label>
+                            <input type="text" required name="Name" class="form-control" />
+                            <label>Tarih</label>
+                            <input type="date" required name="Date" class="form-control" />
+                            <label>Resim</label>
+                            <input type="text" required name="ImageURL" class="form-control" />
+                            <label>Açıklama</label>
+                            <textarea rows="3" name="Description" class="form-control"></textarea>
+                            <br />
+                            <button class="btn  btn-rounded btn-fw btn-primary">Deneyim Ekle</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+</div>
+
+

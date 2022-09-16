@@ -1,0 +1,34 @@
+﻿@model List<EntityLayer.Concrete.WriterRole>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="card">
+
+    <div class="card-body">
+        <h4>Rol Listesi</h4>
+        <hr>
+        <div class="table-responsive">
+            <table class="tabe table table-striped">
+                <tr>
+                    <th>İsim</th>
+                    <th>Güncelle</th>
+                    <th>Sil</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td><a asp-action="CreateRole" class="btn btn-outline-primary" asp-controller="Role" asp-route-id="@item.Id">Güncelle</a></td>
+                        <td><a asp-action="DeleteRole" class="btn btn-outline-danger" asp-controller="Role" asp-route-id="@item.Id">Sil</a></td>
+                   
+                    </tr>
+                }
+            </table>
+        </div>
+         <br />
+        <a href="/Role/CreateRole/" class="btn btn-outline-info">Yeni Rol Ekle</a>
+    </div>
+
+</div>

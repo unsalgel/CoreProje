@@ -1,0 +1,47 @@
+﻿@using EntityLayer.Concrete
+@model EntityLayer.Concrete.Contact
+
+<div class="col-md-6" data-aos="zoom-in" data-aos-delay="100">
+    <div class="bg-light my-2 p-3 pt-2">
+     @*   <form method="post" >*@
+            <div class="form-group my-2">
+                <label for="name" class="form-label fw-bolder">Adınız</label>
+                <input class="form-control" type="text" id="Name" name="Name" required>
+            </div>
+            <div class="form-group my-2">
+                <label for="email" class="form-label fw-bolder">Mail Adresiniz</label>
+                <input class="form-control" type="email" id="Mail" name="Mail" required>
+            </div>
+            <div class="form-group my-2">
+                <label for="message" class="form-label fw-bolder">Mesajınız</label>
+            <textarea class="form-control" style="resize: none;" id="Content" name="Content" rows="4" required></textarea>
+            </div>
+            <input type="text" hidden value="@DateTime.Now.ToShortDateString()" name="Date">
+        <button id="btncontactadd" class="btn btn-primary mt-2" type="button">Gönder</button>
+        @*</form>*@
+    </div>
+</div>
+
+
+    <script>
+        $("#btncontactadd").click(function () {
+            let values = {
+                Name: $("#Name").val(),
+                Mail: $("#Mail").val(),
+                Content: $("#Content").val()
+            };
+          $.ajax({
+                type: "Post",
+                url: "/Default/Send/",
+                data: values,
+                success: function (fnk1) {
+                    let result = jQuery.parseJSON(fnk1);
+                    alert(result.Name + "Başarılı bir şekilde eklendi");
+                }
+            });
+        });
+    </script>
+   
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ 

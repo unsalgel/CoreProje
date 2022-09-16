@@ -1,0 +1,22 @@
+﻿@using EntityLayer.Concrete
+@model EntityLayer.Concrete.WriterMessage
+@{
+    ViewData["Title"] = "AdminMessageDetails";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>Mesaj Detayları</h1>
+
+
+<div class=card>
+    <div class="card-body">
+        @Html.HiddenFor(p=>p.WriterMessageID)
+        <label>Gönderen Adı</label>
+        @Html.TextBoxFor(p=>p.SenderName,new{@class="form-control"})
+        <label>Konu</label>
+        @Html.TextBoxFor(p=>p.Subject,new{@class="form-control"})
+        <label>Mesaj Detay</label>
+        @Html.TextAreaFor(p=>p.MessageContent,5,5,new{@class="form-control"})
+    </div>
+</div>
+

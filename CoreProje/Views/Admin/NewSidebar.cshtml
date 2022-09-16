@@ -1,0 +1,168 @@
+﻿<ul class="nav">
+    <li class="nav-item profile">
+        <div class="profile-desc">
+            <div class="profile-pic">
+                <div class="count-indicator">
+                    <img class="img-xs rounded-circle " src="~/corona-free-dark-bootstrap-admin-template-1.0.0/template/assets/images/faces/face15.jpg" alt="">
+                    <span class="count bg-success"></span>
+                </div>
+                <div class="profile-name">
+                    <h5 class="mb-0 font-weight-normal">Ünsal GEL</h5>
+                   <span class="text-danger">Admin</span>
+                </div>
+            </div>
+        </div>
+    </li>
+    <li class="nav-item nav-category">
+        <span class="nav-link">Navigation</span>
+    </li>
+    <li class="nav-item menu-items">
+        <a class="nav-link" href="/Dashboard/Index/">
+            <span class="menu-icon">
+                <i class="mdi mdi-speedometer"></i>
+            </span>
+            <span class="menu-title">Dashboard</span>
+        </a>
+    </li>
+    <li class="nav-item menu-items">
+        <a class="nav-link" href="/Skill/Index/">
+            <span class="menu-icon">
+                <i class="mdi mdi-cube"></i>
+            </span>
+            <span class="menu-title">Yetenekler</span>
+        </a>
+    </li>
+    <li class="nav-item menu-items">
+        <a class="nav-link" href="/Experience/Index/">
+            <span class="menu-icon">
+                <i class="mdi mdi-playlist-play"></i>
+            </span>
+            <span class="menu-title">Deneyimlerim</span>
+        </a>
+    </li>
+    <li class="nav-item menu-items">
+        <a class="nav-link" href="/Default/Index/">
+            <span class="menu-icon">
+                <i class="mdi mdi-table-large"></i>
+            </span>
+            <span class="menu-title">Siteye Git</span>
+        </a>
+    </li>
+    @*   <li class="nav-item menu-items">
+    <a class="nav-link" href="../../pages/charts/chartjs.html">
+    <span class="menu-icon">
+    <i class="mdi mdi-chart-bar"></i>
+    </span>
+    <span class="menu-title">Grafikler</span>
+    </a>
+    </li>*@
+    <li class="nav-item menu-items">
+        <a class="nav-link" href="/Service/Index/">
+            <span class="menu-icon">
+                <i class="mdi mdi-contacts"></i>
+            </span>
+            <span class="menu-title">Hizmetler</span>
+        </a>
+    </li>
+    @if (User.IsInRole("Admin"))
+    {
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="/Portfolio/Index/">
+                <span class="menu-icon">
+                    <i class="mdi mdi-projector-screen"></i>
+                </span>
+                <span class="menu-title">Projelerim</span>
+            </a>
+        </li>
+    }
+
+    @if (User.IsInRole("Admin"))
+    {
+        <li class="nav-item menu-items">
+            <a class="nav-link" data-toggle="collapse" href="#mesajlar" aria-expanded="false" aria-controls="mesajlar">
+                <span class="menu-icon">
+                    <i class="mdi mdi-security"></i>
+                </span>
+                <span class="menu-title">Mesajlar</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="mesajlar">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="/AdminMessage/ReceiverMessageList/">Gelen Kutusu</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/AdminMessage/SenderMessageList/">Giden Kutusu</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/AdminMessage/AdminSendMessage/">Yeni Mesaj Yaz</a></li>
+
+                </ul>
+            </div>
+        </li>
+    }
+    <li class="nav-item menu-items">
+        <a class="nav-link" data-toggle="collapse" href="#iletisim" aria-expanded="false" aria-controls="iletisim">
+            <span class="menu-icon">
+                <i class="mdi mdi-email-variant"></i>
+            </span>
+            <span class="menu-title">İletişim</span>
+            <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="iletisim">
+            <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/Contact/SubContact/">İletişim</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/Contact/Index/">Mesajlar</a></li>
+            </ul>
+        </div>
+    </li>
+    @if (User.IsInRole("Admin"))
+    {
+        <li class="nav-item menu-items">
+            <a class="nav-link" data-toggle="collapse" href="#Yetkilendirme" aria-expanded="false" aria-controls="Yetkilendirme">
+                <span class="menu-icon">
+                    <i class="mdi mdi-security"></i>
+                </span>
+                <span class="menu-title">Yetkilendirme</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="Yetkilendirme">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="/Role/Index/">Roller</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/Role/CreateRole/">Yeni Rol Ekle</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/UserList/Index/">Yetki Ver</a></li>
+                </ul>
+            </div>
+        </li>
+    }
+
+
+    <li class="nav-item menu-items">
+        <a class="nav-link" href="/SocialMedia/Index/">
+            <span class="menu-icon">
+                <i class="mdi mdi-adjust"></i>
+            </span>
+            <span class="menu-title">Sosyal Medya</span>
+        </a>
+    </li>
+    <li class="nav-item menu-items">
+        <a class="nav-link" href="/About/Index/">
+            <span class="menu-icon">
+                <i class="mdi mdi-adjust"></i>
+            </span>
+            <span class="menu-title">Hakkımızda</span>
+        </a>
+    </li>
+    <li class="nav-item menu-items">
+        <a class="nav-link" href="/TestiMonial/Index/">
+            <span class="menu-icon">
+                <i class="mdi mdi-power-plug"></i>
+            </span>
+            <span class="menu-title">Referanslarım</span>
+        </a>
+    </li>
+    <li class="nav-item menu-items">
+        <a class="nav-link" href="/Feature/Index/">
+            <span class="menu-icon">
+                <i class="mdi mdi-trophy-award"></i>
+            </span>
+            <span class="menu-title">Öne Çıkan Gönderiler</span>
+        </a>
+    </li>
+</ul>
+

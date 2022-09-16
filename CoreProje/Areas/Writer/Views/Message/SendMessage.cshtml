@@ -1,0 +1,21 @@
+﻿@model EntityLayer.Concrete.WriterMessage
+@{
+    ViewData["Title"] = "SendMessage";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<h3>Yeni Mesaj Gönder</h3>
+<br />
+<div class="container-fluid">
+ <form method="post">
+<label>Alıcı Mail</label>
+<input type="text" class="form-control" name="Receiver"  />
+<label>Başlık</label>
+<input type="text" class="form-control" name="Subject" />
+<label>İçerik</label>
+<textarea  class="form-control" name="MessageContent"></textarea>
+<input type="text" hidden class="form-control" name="Date" value="@DateTime.Now.ToShortDateString()" />
+<br />
+<button class="btn btn-outline-primary">Mesaj Gönder</button>
+</form>
+</div>

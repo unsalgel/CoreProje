@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewData["Title"] = "AdminSendMessage";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="row ">
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Yeni Mesaj Gönderme Paneli</h4>
+                <form method="post" action="/AdminMessage/AdminSendMessage/">
+                    <input type="text" value="admin@gmail.com" name="Sender" hidden />
+                    <input type="text" value="@DateTime.Now.ToShortDateString()" name="Date" hidden />
+                    <input type="text" value="admin" name="SenderName" hidden />
+                    <label>Alıcı Mail Adresi</label>   
+                    <input type="text" class="form-control" name="Receiver" />
+                    <label>Konu</label>
+                    <input type="text" class="form-control" name="Subject" />
+                    <label>Mesaj</label>
+                    <textarea class="form-control" rows="5" name="MessageContent" ></textarea>
+                    <br />
+                    <button class="btn btn-outline-primary">Gönder</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

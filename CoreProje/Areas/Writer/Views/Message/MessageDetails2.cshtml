@@ -1,0 +1,19 @@
+﻿@model EntityLayer.Concrete.WriterMessage
+@{
+    ViewData["Title"] = "MessageDetails2";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<h1>MessageDetails2</h1>
+
+<br />
+<div class="container-fluid">
+<label>Başlık</label>
+<input type="text" class="form-control" name="Title" value="@Model.Subject" />
+<label>Alıcı Adı</label>
+<input type="text" class="form-control" name="Title" value="@Model.ReceiverName" />
+<label>Alıcı Mail</label>
+<input type="text" class="form-control" name="Title" value="@Model.Receiver" />
+<label>İçerik</label>
+@Html.TextAreaFor(p=>p.MessageContent,5,5,new {@class="form-control"})
+</div>

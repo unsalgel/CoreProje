@@ -1,0 +1,168 @@
+﻿@using EntityLayer.Concrete
+@model EntityLayer.Concrete.Experience
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>AJAX İŞLEMLERİ</h1>
+
+<div class="col-md-6">
+    <div class="p-2">
+        <button type="button" id="btngetlistall" class="btn btn-outline-primary">Tüm Verileri Getir</button>
+        <button type="button" id="btnaddexperience" class="btn btn-outline-success">Kullanıcı Ekle</button>
+        <button type="button" id="btnexperienceid" class="btn btn-outline-warning">İd ile getir</button>
+        <button type="button" id="btnexperiencesil" class="btn btn-outline-danger">Silme işlemi</button>
+        <button type="button" id="btnexperienceguncelleme" class="btn btn-outline-info">Güncelleme işlemi</button>
+    </div>
+</div>
+<h4 class="text-center">Deneyim Listesi</h4>
+<div class="p-2" id="listexp">
+</div>
+
+<h4 class="text-center">ID YE GÖRE GELEN DENEYİMLER </h4>
+<div class="p-2" id="listexpbyid">
+</div>
+
+<div class="col-md-12">
+    <h4>Ekleme Paneli</h4>
+    <input type="text" class="form-control" id="inptname" placeholder="Adınız" /><br />
+    <input type="text" class="form-control" id="inptdate" placeholder="Tarih" /><br />
+
+</div>
+
+<div class="modal" id="modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="card">
+                <div class="card-body">
+                    <div class="modal-header">
+                        <h2 class="modal-title">Deneyim Güncelle</h2>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-12">
+                <h4>Güncelleme Paneli</h4>
+                @*  @Html.TextBoxFor(p=>p.Name)*@
+                <input type="text" class="form-control" id="inptnamegnc" placeholder="Adınız" /><br />
+             
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+<div class="col-md-12">
+    <h4>İdye göre getirme Paneli</h4>
+    <input type="text" class="form-control" id="inptid" placeholder="ID GİRİNİZ" /><br />
+
+</div>
+
+<div class="col-md-12">
+    <h4>Silme Paneli</h4>
+    <input type="text" class="form-control" id="inptdelete" placeholder="ID GİRİNİZ" /><br />
+
+</div>
+
+@section scripts
+    {
+    <script>
+        //listeleme
+        $("#btngetlistall").click(function () {
+            $.ajax({
+                contentType: "application/json",
+                dataType: "json",
+                type: "Get",
+                url: "/ExperienceAjax/ListExperience/",
+                success: function (funk) {
+                    let values = jQuery.parseJSON(funk);
+                    let htmlst = "<table class=table table-bordered> <tr><th>#</th> <th>Başlık</th> <th>Tarih</th></tr>";
+                    $.each(values, (index, value) => {
+                        htmlst += `<tr><td>${value.ExperienceID}</td> <td>${value.Name}</td> <td>${value.Date}</td> <td><a data-toggle="modal" data-target="#modal1" id="btnexperienceguncellemew" href="/ExperienceAjax/EditExperience/${value.ExperienceID}" class="btn btn-outline-warning">GÜNCELLE</a></td> </tr>`
+                    });
+                    htmlst += "</table>";
+                    $("#listexp").html(htmlst);
+
+
+                }
+            });
+        });
+
+        //EKLEME
+        $("#btnaddexperience").click(function () {
+            let values = {
+                Name: $("#inptname").val(),
+                Date: $("#inptdate").val()
+            };
+            $.ajax({
+                type: "Post",
+                url: "/ExperienceAjax/AddExperience/",
+                data: values,
+                success: function (fnk1) {
+                    let result = jQuery.parseJSON(fnk1);
+                    alert(result.Name + "Başarılı bir şekilde eklendi");
+                }
+            });
+        });
+        //Guncelleme
+        $("#btnexperienceguncelleme").click(function () {
+
+            let values = {
+                Name: $("#inptname").val(),
+                ExperienceID: $("#inptid").val()
+            };
+            $.ajax({
+                type: "POST",
+                url: "/ExperienceAjax/EditExperience/",
+                data: values,
+                success: function (fnk5) {
+                
+                   
+                    alert("başarılı!");
+
+                }
+            });
+        });
+        //İD YE GÖRE GETİRME
+        $("#btnexperienceid").click(a => {
+            let id = $("#inptid").val();
+            $.ajax({
+                contentType: "application/json",
+                dataType: "json",
+                type: "Get",
+                url: "/ExperienceAjax/GetByID/",
+                data: { ExperienceID: id },
+                success: function (fnk2) {
+                    let result = jQuery.parseJSON(fnk2);
+                    console.log(result);
+                    let htmlstr = `<table class=table table-hover> <tr><th>#</th> <td>${result.ExperienceID}</td></tr> <tr><th>Deneyim Başlığı</th> <td> ${result.Name}</td></tr> </table>`;
+                    $("#listexpbyid").html(htmlstr);
+                }
+
+            });
+            //    console.log(id);
+        });
+
+        //Silme İşlemi
+        $("#btnexperiencesil").click(y => {
+            let id = $("#inptdelete").val();
+            $.ajax({
+                url: "/ExperienceAjax/DeleteExperience/" + id,
+                type: "post",
+                contentType: "Application/JSON",
+                dataType: "json",
+                success: function (fnk3) {
+                    loadData();
+                    alert('Silme işlemi başarılı !')
+                }
+            });
+        });
+    </script>
+
+}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

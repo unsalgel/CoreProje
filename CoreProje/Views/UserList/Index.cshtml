@@ -1,0 +1,37 @@
+﻿@using EntityLayer.Concrete
+@model List<WriterUser>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>Kullanıcı Listesi</h1>
+
+<div class="card">
+    <div class="card-body">
+        <table class="table table-striped ">
+            <tr>
+                <th>#</th>
+                <th>İsim</th>
+                <th>Soyisim</th>
+                <th>Kullanıcı Adı</th>
+                <th>Email</th>
+                <th>Rol Ata</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.SurName</td>
+                    <td>@item.UserName</td>
+                    <td>@item.Email</td>
+                    <td><a asp-action="RoleAssign" class="btn btn-outline-primary" asp-controller="Role" asp-route-id="@item.Id">Rol Ata</a></td>
+                  
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
